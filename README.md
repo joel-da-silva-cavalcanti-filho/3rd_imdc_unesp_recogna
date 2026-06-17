@@ -1,9 +1,5 @@
 
 <!-- <strong> Important: </strong>Don't forget to set it as a public repository. In addition, please ensure your model repository includes a clear and complete `README.md` file containing the following information: -->
-
-<strong>Model: John of Patmos v1 </strong> 
----
-
 <strong>Team and Contributors</strong>
 ---
 State University of São Paulo, Department of Computing, Recogna Laboratory
