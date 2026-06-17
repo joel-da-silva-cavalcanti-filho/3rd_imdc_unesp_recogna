@@ -11,40 +11,46 @@ Eduardo Roldão Nonato Perondin<br>
 
 <strong> 2. Repository Structure </strong>
 ---
-A brief description of the contents and purpose of >each folder and file in the repository.
+<!-- A brief description of the contents and purpose of >each folder and file in the repository.-->
+
 
 <strong> 3. Libraries and Dependencies </strong>
 ---
-
-A list of all libraries and packages used to process the data and train your model.
+<!-- A list of all libraries and packages used to process the data and train your model. -->
 
 <strong> 4. Data and Variables </strong>
 ---
+
+<!--
 * Which datasets and variables were used?
 * How was the data pre-processed?
 * How were the variables selected? Please point to the relevant part of the code.
+-->
 
 <strong>5. Model Training </strong> 
 ---
-
+<!---
 * Description of how the model was trained. If applicable, describe any hyperparameter optimization techniques used.
 
 * Please specify where the code for training and generating forecasts is located, and provide instructions on how to run it.
+-->
 
 <strong> 5. Data Usage Restriction </strong>
 ---
+<!--
 Describe how you handled the requirement of using only data up to EW 25 of the current year to generate predictions from EW 41 of the same year to EW 40 of the next year.
+-->
 
 <strong> 6. Predictive Uncertainty </strong> 
 ---
-How are your prediction intervals computed? 
+<!-- How are your prediction intervals computed? -->
 
 <strong> 7. References </strong>
 ---
+<!--
 If your model is based on a published or preprint (e.g., arXiv) paper, include the citation, DOI, and link.
 
 <strong> An illustrative example from the previous edition is available [here](https://mosqlimate.org/davibarreira/jbd-mosqlimate-sprint).</strong>
-
 
 ### Using `mosqlient package`: 
 
@@ -100,3 +106,7 @@ If you are an R user, make sure you have the R kernel installed in your Jupyter 
 After this you can just open the notebooks indicated below and follow the instructions in them.
 
 Follow the [R demo rmd](/Demo%20Notebooks/R%20demo.Rmd) or [Python demo notebook](/Demo%20Notebooks/Python%20demo.ipynb) to learn of the essential steps you must follow to complete a submission of your work. For more details check the [mosqlient documentation](https://mosqlimate-client.readthedocs.io/en/latest/tutorials/API/registry/).  Video tutorials for prediction submission are available here: one for [R](https://www.youtube.com/watch?v=57hM-dVY4hA&list=PLh4FLfhFN5irN_IoZvy4c3cf4ZWrSWrwF&index=3) and another for [Python](https://www.youtube.com/watch?v=YorYQ6phAfw&list=PLh4FLfhFN5irN_IoZvy4c3cf4ZWrSWrwF&index=2). If you run into dificulties, please reach out fo help at our [discord server](https://discord.gg/yqtgW4TC). 
+
+
+-->
+
