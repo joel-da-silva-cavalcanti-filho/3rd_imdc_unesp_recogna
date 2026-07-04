@@ -33,8 +33,6 @@ Eduardo Roldão Nonato Perondini<br>
 
 <strong>5. Model Training </strong> 
 ---
-
-## Model Training
 ### TTM-R2 
 
 | Item                    | Description                                                                                               |
