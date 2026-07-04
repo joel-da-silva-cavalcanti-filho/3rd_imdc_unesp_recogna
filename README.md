@@ -76,8 +76,33 @@ Describe how you handled the requirement of using only data up to EW 25 of the c
 ---
 <!-- How are your prediction intervals computed? -->
 
+```python
+z = {
+    "50": 0.67448975,
+    "80": 1.28155157,
+    "90": 1.64485363,
+    "95": 1.95996398
+}
+
+resultado = pd.DataFrame({
+    "date": datas_validacao,
+    "lower_95": np.clip(pred - z["95"] * sigma.iloc[i], 0, None),
+    "lower_90": np.clip(pred - z["90"] * sigma.iloc[i], 0, None),
+    "lower_80": np.clip(pred - z["80"] * sigma.iloc[i], 0, None),
+    "lower_50": np.clip(pred - z["50"] * sigma.iloc[i], 0, None),
+    "median": pred,
+    "predicted": pred,
+    "upper_50": pred + z["50"] * sigma.iloc[i],
+    "upper_80": pred + z["80"] * sigma.iloc[i],
+    "upper_90": pred + z["90"] * sigma.iloc[i],
+    "upper_95": pred + z["95"] * sigma.iloc[i],
+})
+```
+
 <strong> 7. References </strong>
 ---
+
+
 <!--
 If your model is based on a published or preprint (e.g., arXiv) paper, include the citation, DOI, and link.
 
