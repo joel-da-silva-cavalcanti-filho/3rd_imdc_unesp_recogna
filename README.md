@@ -59,6 +59,125 @@ Eduardo Roldão Nonato Perondini<br>
 | Execution           | Run the training script to fine-tune the model, then run the prediction script using the saved model (`./melhor_modelo_ttm_dengue`). |
 
 ### PatchTST
+Model Configuration
+| Parameter                          | Value                    |
+| ---------------------------------- | ------------------------ |
+| Architecture                       | `PatchTSTForPretraining` |
+| Model type                         | `patchtst`               |
+| Activation function                | `gelu`                   |
+| Context length                     | `305`                    |
+| Prediction length                  | `24`                     |
+| Number of input channels           | `15`                     |
+| Number of targets                  | `1`                      |
+| Hidden dimension (`d_model`)       | `128`                    |
+| Feed-forward dimension (`ffn_dim`) | `512`                    |
+| Number of hidden layers            | `3`                      |
+| Number of attention heads          | `4`                      |
+| Patch length                       | `16`                     |
+| Patch stride                       | `1`                      |
+| Stride                             | `8`                      |
+| Pooling type                       | `mean`                   |
+| Distribution output                | `student_t`              |
+| Loss function                      | `mse`                    |
+| Scaling                            | `std`                    |
+| Positional encoding                | `sincos`                 |
+| Normalization                      | `batchnorm`              |
+| Normalization epsilon              | `1e-5`                   |
+| Pre-normalization                  | `True`                   |
+| Bias                               | `True`                   |
+| Channel attention                  | `True`                   |
+| Share embedding                    | `True`                   |
+| Share projection                   | `True`                   |
+| Use CLS token                      | `False`                  |
+| Input masking                      | `True`                   |
+| Mask type                          | `random`                 |
+| Random mask ratio                  | `0.5`                    |
+| Forecast mask patches              | `[2]`                    |
+| Channel-consistent masking         | `False`                  |
+| Unmasked channel indices           | `None`                   |
+| Mask value                         | `0`                      |
+| Dropout (attention)                | `0.0`                    |
+| Dropout (feed-forward)             | `0.0`                    |
+| Dropout (head)                     | `0.0`                    |
+| Dropout (path)                     | `0.0`                    |
+| Dropout (positional)               | `0.0`                    |
+| Weight initialization std          | `0.02`                   |
+| Number of parallel samples         | `100`                    |
+| Output range                       | `None`                   |
+| Data type                          | `float32`                |
+| Transformers version               | `5.3.0`                  |
+
+
+| Item                        | Description                                                                                                                                                                  |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Model                       | PatchTST (`PatchTSTForPretraining`)                                                                                                                                          |
+| Architecture                | Transformer-based self-supervised pretraining model                                                                                                                          |
+| Training objective          | Self-supervised pretraining using masked patch reconstruction                                                                                                                |
+| Input variables             | Dengue cases and climate variables                                                                                                                                           |
+| Input context               | Sliding window applied in the datasets `train1`, `train2`, `train3`, `train4`                                                                                               |
+| Prediction horizon          | 52 weeks (configuration parameter)                                                                                                                                           |
+| Patch length                | 16                                                                                                                                                                           |
+| Patch stride                | 8                                                                                                                                                                            |
+| Number of input channels    | Equal to the number of variables in the input tensor                                                                                                                         |
+| Channel attention           | Enabled (`True`)                                                                                                                                                             |
+| Shared embedding            | Enabled (`True`)                                                                                                                                                             |
+| Optimizer                   | AdamW                                                                                                                                                                        |
+| Backbone learning rate      | 1 × 10⁻⁵                                                                                                                                                                     |
+| Head learning rate          | 1 × 10⁻³                                                                                                                                                                     |
+| Weight decay                | 1 × 10⁻²                                                                                                                                                                     |
+| Learning rate scheduler     | Linear scheduler                                                                                                                                                             |
+| Warm-up steps               | 0                                                                                                                                                                            |
+| Batch size                  | 200                                                                                                                                                                          |
+| Number of epochs            | 1                                                                                                                                                                            |
+| Hyperparameter optimization | None. Hyperparameters were manually selected.                                                                                                                                |
+| Model checkpoint            | Saved after each training iteration as `weights/PatchTST-Dengue-ClimateExogs_v{1,2,3,4}.pth` and in Hugging Face format under `weights/Pretrained_PatchTST_dengue_climate_exogs_v{1,2,3,4}`. |
+
+| Item                | Description                                                                                                                                                                                              |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Input data          | Tensor containing weekly dengue cases and climate variables.                                                                                                                                             |
+| Output              | Pretrained PatchTST model weights used for downstream forecasting.                                                                                                                                       |
+| Execution           | Run the pretraining script to generate the pretrained weights. Afterwards, run the forecasting script that loads `weights/Pretrained_PatchTST_dengue_climate_exogs_v{1,2,3,4}` to produce the final predictions. |
+
+### Fine-tuning Routine | PatchTST
+
+| Item                          | Description                                                                                    |
+| ----------------------------- | ---------------------------------------------------------------------------------------------- |
+| Model                         | PatchTST (`PatchTSTForPrediction`)                                                             |
+| Initialization                | Pretrained weights loaded from `weights/Pretrained_PatchTST_dengue_climate_exogs_v{1,2,3,4}`   |
+| Architecture                  | Transformer-based PatchTST                                                                     |
+| Input variables               | Dengue cases and climate variables                                                             |
+| Input context                 | Sliding window applied in the datasets `train1`, `train2`, `train3`, `train4`                  |
+| Forecast horizon              | 52 weeks                                                                                       |
+| Patch length                  | 16                                                                                             |
+| Patch stride                  | 8                                                                                              |
+| Number of input channels      | Equal to the number of variables in the input tensor                                           |
+| Channel attention             | Enabled (`True`)                                                                               |
+| Shared embedding              | Enabled (`True`)                                                                               |
+| Optimizer                     | AdamW                                                                                          |
+| Backbone learning rate        | 1 × 10⁻⁵                                                                                       |
+| Prediction head learning rate | 1 × 10⁻³                                                                                       |
+| Weight decay                  | 1 × 10⁻²                                                                                       |
+| Learning rate scheduler       | Linear scheduler                                                                               |
+| Warm-up steps                 | 0                                                                                              |
+| Number of epochs              | 3                                                                                              |
+| Mini-batch size               | 183 samples                                                                                    |
+| Validation batch size         | 200                                                                                            |
+| Early stopping                | Enabled (based on validation loss)                                                             |
+| Hyperparameter optimization   | None. Hyperparameters were manually selected.                                                  |
+| Model checkpoint              | Saved after each epoch as both PyTorch (`*.pth`) and Hugging Face (`save_pretrained`) formats. |
+
+### Training and Forecast Generation
+
+| Item             | Description                                                                                                                                           |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Fine-tuning code | `finetuning_PatchTST.py` (replace with the actual script name if different)                                                                           |
+| Pretrained model | `weights/Pretrained_PatchTST_dengue_climate_exogs_v{1,2,3,4}`                                                                                                 |
+| Training data    | Strided training windows generated from the dengue and climate tensor.                                                                                |
+| Validation data  | Validation tensor loaded through `ValidationDataset`.                                                                                                 |
+| Output           | Fine-tuned PatchTST model for weekly dengue forecasting.                                                                                              |
+| Saved model      | `weights_v2/climate_exogs/<train_file>_FineTuned_Dengue-PatchTST-ClimateExogs_v{1,2,3,4}.pth` and the Hugging Face checkpoint specified by `checkpoint_file`. |
+| Execution        | Load the pretrained PatchTST weights, run the fine-tuning script, and use the resulting checkpoint to generate forecasts for the target locations.    |
+
 
 <!---
 * Description of how the model was trained. If applicable, describe any hyperparameter optimization techniques used.
