@@ -235,6 +235,7 @@ resultado = pd.DataFrame({
 
 * EKAMBARAM, Vijay et al. Tiny time mixers (ttms): Fast pre-trained models for enhanced zero/few-shot forecasting of multivariate time series. Advances in Neural Information Processing Systems, v. 37, p. 74147-74181, 2024.
 * NIE, Yuqi et al. A time series is worth 64 words: Long-term forecasting with transformers. arXiv preprint arXiv:2211.14730, 2022.
+* MOSQLIMATE. Infodengue-Mosqlimate Dengue Sprint 2026: Instructions. [S. l.], 2026. Disponível em: https://sprint.mosqlimate.org/instructions/. Acesso em: 3 jul. 2026.
 
 <!--
 If your model is based on a published or preprint (e.g., arXiv) paper, include the citation, DOI, and link.
