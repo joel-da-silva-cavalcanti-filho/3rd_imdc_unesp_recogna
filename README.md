@@ -18,6 +18,21 @@ Eduardo Roldão Nonato Perondini<br>
 ---
 <!-- A list of all libraries and packages used to process the data and train your model. -->
 
+### Python Dependencies
+
+| Package | Imported Modules / Objects | Purpose |
+|---------|----------------------------|---------|
+| `torch` | `torch`, `TensorDataset`, `DataLoader`, `AdamW`, `OneCycleLR` | Deep learning framework used for model training, optimization, data loading, and learning rate scheduling. |
+| `transformers` | `PatchTSTConfig`, `PatchTSTForPretraining`, `PatchTSTForPrediction`, `get_scheduler` | Hugging Face implementation of the PatchTST architecture and training utilities. |
+| `tsfm-public` | `get_model` | Loads the IBM Granite Time Series TinyTimeMixer (TTM) foundation model. |
+| `pandas` | `pandas` (`pd`) | Data manipulation and preprocessing. |
+| `numpy` | `numpy` (`np`) | Numerical computations and array operations. |
+| `wandb` | `wandb` | Experiment tracking and logging of training metrics. |
+| `tqdm` | `tqdm` | Progress bars for training and evaluation loops. |
+| `pathlib` | `Path` | Platform-independent file and directory handling. |
+| `os` | `os` | Operating system utilities (file handling, CPU detection, paths). |
+| `json` | `json` | Reading and writing JSON files for configuration and prediction outputs. |
+
 <strong> 4. Data and Variables </strong>
 ---
 
@@ -59,7 +74,6 @@ Eduardo Roldão Nonato Perondini<br>
 | Execution           | Run the training script to fine-tune the model, then run the prediction script using the saved model (`./melhor_modelo_ttm_dengue`). |
 
 ### PatchTST
-Model Configuration
 | Parameter                          | Value                    |
 | ---------------------------------- | ------------------------ |
 | Architecture                       | `PatchTSTForPretraining` |
