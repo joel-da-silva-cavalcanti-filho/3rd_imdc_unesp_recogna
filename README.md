@@ -13,6 +13,16 @@ Eduardo Roldão Nonato Perondini<br>
 ---
 <!-- A brief description of the contents and purpose of >each folder and file in the repository.-->
 
+| File/Folder | Description |
+|-------------|-------------|
+| `Demo Notebooks/` | Contains Jupyter notebooks demonstrating how to use the Mosqlimate API for model registration, prediction submission, and evaluation. These notebooks serve as practical examples for reproducing the competition workflow. |
+| `PatchTST_results/` | Stores the prediction results generated using the PatchTST forecasting model. The directory is organized by experiment, containing the JSON files required for submission to the IMDC platform. |
+| `TTM_results/` | Contains the prediction results produced with the Tiny Time Mixer (TTM) model. Results are organized according to the evaluated datasets and geographical aggregation levels. |
+| `img/` | Repository images used in the documentation, including figures displayed in the README. |
+| `.gitignore` | Specifies files and directories that should not be tracked by Git, such as cache files, temporary outputs, and virtual environments. |
+| `LICENSE` | Defines the license under which the repository is distributed. |
+| `README.md` | Main documentation of the repository, including project overview, installation instructions, usage examples, and submission workflow. |
+| `pyproject.toml` | Project configuration file defining metadata, dependencies, and build settings required for the Python environment. |
 
 <strong> 3. Libraries and Dependencies </strong>
 ---
