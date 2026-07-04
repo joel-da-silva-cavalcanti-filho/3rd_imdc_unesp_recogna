@@ -6,7 +6,7 @@ State University of São Paulo, Department of Computing, Recogna Laboratory
 
 Joel da Silva Cavalcanti Filho<br>
 João Renato Ribeiro Manesco<br>
-Eduardo Roldão Nonato Perondin<br>
+Eduardo Roldão Nonato Perondini<br>
 
 
 <strong> 2. Repository Structure </strong>
@@ -21,6 +21,10 @@ Eduardo Roldão Nonato Perondin<br>
 <strong> 4. Data and Variables </strong>
 ---
 
+| Dataset | Variables Used |
+|---------|----------------|
+| `dengue.csv.gz` | `casos` |
+| `climate.csv.gz` | `temp_min`, `temp_med`, `temp_max`<br>`precip_min`, `precip_med`, `precip_max`<br>`pressure_min`, `pressure_med`, `pressure_max`<br>`rel_humid_min`, `rel_humid_med`, `rel_humid_max`<br>`thermal_range`, `rainy_days` |
 <!--
 * Which datasets and variables were used?
 * How was the data pre-processed?
