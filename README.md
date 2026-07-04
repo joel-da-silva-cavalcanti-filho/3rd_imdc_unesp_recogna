@@ -33,6 +33,33 @@ Eduardo Roldão Nonato Perondini<br>
 
 <strong>5. Model Training </strong> 
 ---
+
+### Model Training
+
+| Item                    | Description                                                                                               |
+| ----------------------- | --------------------------------------------------------------------------------------------------------- |
+| Model                   | IBM Granite Time Series TinyTimeMixer (TTM-R2) (`ibm-granite/granite-timeseries-ttm-r2`)                  |
+| Fine-tuning             | Only the **decoder** and **prediction head** were trained; all remaining backbone parameters were frozen. |
+| Input context           | Sliding window applied in the datasets `train1`, `train2`, `train3`, `train4`                             |
+| Forecast horizon        | 52 weekly observations                                                                                    |
+| Input transformation    | `log1p` applied to both input and target tensors                                                          |
+| Batch size              | 256                                                                                                       |
+| Optimizer               | AdamW                                                                                                     |
+| Learning rate           | 3 × 10⁻³                                                                                                  |
+| Weight decay            | 1 × 10⁻²                                                                                                  |
+| Learning rate scheduler | OneCycleLR                                                                                                |
+| Number of epochs        | 100                                                                                                       |
+| Gradient clipping       | 1.0                                                                                                       |
+| Model selection         | Lowest average training loss                                                                              |
+| Saved model             | `./melhor_modelo_ttm_dengue`                                                                              |
+
+| Item                | Description                                                                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Input data          | `national_tensor_train_1.pt`, `national_tensor_train_2.pt`, `national_tensor_train_3.pt`,`national_tensor_train_4.pt`                |
+| Output              | Weekly forecasts for the required target locations in the IMDC submission format.                                                    |
+| Execution           | Run the training script to fine-tune the model, then run the prediction script using the saved model (`./melhor_modelo_ttm_dengue`). |
+
+
 <!---
 * Description of how the model was trained. If applicable, describe any hyperparameter optimization techniques used.
 
