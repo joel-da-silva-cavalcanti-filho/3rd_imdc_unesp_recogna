@@ -166,8 +166,6 @@ Model Configuration
 | Hyperparameter optimization   | None. Hyperparameters were manually selected.                                                  |
 | Model checkpoint              | Saved after each epoch as both PyTorch (`*.pth`) and Hugging Face (`save_pretrained`) formats. |
 
-### Training and Forecast Generation
-
 | Item             | Description                                                                                                                                           |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Fine-tuning code | `finetuning_PatchTST.py` (replace with the actual script name if different)                                                                           |
