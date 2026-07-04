@@ -34,7 +34,8 @@ Eduardo Roldão Nonato Perondini<br>
 <strong>5. Model Training </strong> 
 ---
 
-### Model Training
+## Model Training
+### TTM-R2 
 
 | Item                    | Description                                                                                               |
 | ----------------------- | --------------------------------------------------------------------------------------------------------- |
@@ -59,6 +60,7 @@ Eduardo Roldão Nonato Perondini<br>
 | Output              | Weekly forecasts for the required target locations in the IMDC submission format.                                                    |
 | Execution           | Run the training script to fine-tune the model, then run the prediction script using the saved model (`./melhor_modelo_ttm_dengue`). |
 
+### PatchTST
 
 <!---
 * Description of how the model was trained. If applicable, describe any hyperparameter optimization techniques used.
@@ -102,6 +104,8 @@ resultado = pd.DataFrame({
 <strong> 7. References </strong>
 ---
 
+* EKAMBARAM, Vijay et al. Tiny time mixers (ttms): Fast pre-trained models for enhanced zero/few-shot forecasting of multivariate time series. Advances in Neural Information Processing Systems, v. 37, p. 74147-74181, 2024.
+* NIE, Yuqi et al. A time series is worth 64 words: Long-term forecasting with transformers. arXiv preprint arXiv:2211.14730, 2022.
 
 <!--
 If your model is based on a published or preprint (e.g., arXiv) paper, include the citation, DOI, and link.
