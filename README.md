@@ -212,6 +212,7 @@ Eduardo Roldão Nonato Perondini<br>
 <!--
 Describe how you handled the requirement of using only data up to EW 25 of the current year to generate predictions from EW 41 of the same year to EW 40 of the next year.
 -->
+During the model training phase, the fine-tuning process considered the data availability constraints by reserving only the remaining epidemiological weeks for validation. However, these constraints did not impact the inference stage, since the prediction horizon was predefined and remained unchanged.
 
 <strong> 6. Predictive Uncertainty </strong> 
 ---
