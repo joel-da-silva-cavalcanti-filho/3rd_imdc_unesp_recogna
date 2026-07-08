@@ -192,13 +192,11 @@ Eduardo Roldão Nonato Perondini<br>
 
 | Item             | Description                                                                                                                                           |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Fine-tuning code | `finetuning_PatchTST.py` (replace with the actual script name if different)                                                                           |
 | Pretrained model | `weights/Pretrained_PatchTST_dengue_climate_exogs_v{1,2,3,4}`                                                                                                 |
 | Training data    | Strided training windows generated from the dengue and climate tensor.                                                                                |
 | Validation data  | Validation tensor loaded through `ValidationDataset`.                                                                                                 |
 | Output           | Fine-tuned PatchTST model for weekly dengue forecasting.                                                                                              |
-| Saved model      | `weights_v2/climate_exogs/<train_file>_FineTuned_Dengue-PatchTST-ClimateExogs_v{1,2,3,4}.pth` and the Hugging Face checkpoint specified by `checkpoint_file`. |
-| Execution        | Load the pretrained PatchTST weights, run the fine-tuning script, and use the resulting checkpoint to generate forecasts for the target locations.    |
+
 
 
 <!---
