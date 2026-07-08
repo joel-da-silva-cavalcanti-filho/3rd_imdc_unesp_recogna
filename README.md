@@ -65,11 +65,11 @@ Eduardo Roldão Nonato Perondini<br>
 | Model                   | IBM Granite Time Series TinyTimeMixer (TTM-R2) (`ibm-granite/granite-timeseries-ttm-r2`)                  |
 | Fine-tuning             | Only the **decoder** and **prediction head** were trained; all remaining backbone parameters were frozen. |
 | Input context           | Sliding window applied in the datasets `train1`, `train2`, `train3`, `train4`                             |
-| Forecast horizon        | 52 weekly observations                                                                                    |
+| Forecast horizon        | 53 weekly observations                                                                                    |
 | Input transformation    | `log1p` applied to both input and target tensors                                                          |
 | Batch size              | 256                                                                                                       |
 | Optimizer               | AdamW                                                                                                     |
-| Learning rate           | 3 × 10⁻³                                                                                                  |
+| Learning rate           | 1 × 10⁻4                                                                                                  |
 | Weight decay            | 1 × 10⁻²                                                                                                  |
 | Learning rate scheduler | OneCycleLR                                                                                                |
 | Number of epochs        | 100                                                                                                       |
@@ -139,7 +139,7 @@ Eduardo Roldão Nonato Perondini<br>
 | Training objective          | Self-supervised pretraining using masked patch reconstruction                                                                                                                |
 | Input variables             | Dengue cases and climate variables                                                                                                                                           |
 | Input context               | Sliding window applied in the datasets `train1`, `train2`, `train3`, `train4`                                                                                               |
-| Prediction horizon          | 52 weeks (configuration parameter)                                                                                                                                           |
+| Prediction horizon          | 53 weeks (configuration parameter)                                                                                                                                           |
 | Patch length                | 16                                                                                                                                                                           |
 | Patch stride                | 8                                                                                                                                                                            |
 | Number of input channels    | Equal to the number of variables in the input tensor                                                                                                                         |
@@ -171,7 +171,7 @@ Eduardo Roldão Nonato Perondini<br>
 | Architecture                  | Transformer-based PatchTST                                                                     |
 | Input variables               | Dengue cases and climate variables                                                             |
 | Input context                 | Sliding window applied in the datasets `train1`, `train2`, `train3`, `train4`                  |
-| Forecast horizon              | 52 weeks                                                                                       |
+| Forecast horizon              | 53 weeks                                                                                       |
 | Patch length                  | 16                                                                                             |
 | Patch stride                  | 8                                                                                              |
 | Number of input channels      | Equal to the number of variables in the input tensor                                           |
@@ -225,19 +225,25 @@ z = {
     "90": 1.64485363,
     "95": 1.95996398
 }
+```
+```python
+predicoes = pred_estado.iloc[:, 1:].to_numpy(dtype=float)
 
+sigma = np.maximum(predicoes * 0.20, 1.0)
+```
+```python
 resultado = pd.DataFrame({
     "date": datas_validacao,
-    "lower_95": np.clip(pred - z["95"] * sigma.iloc[i], 0, None),
-    "lower_90": np.clip(pred - z["90"] * sigma.iloc[i], 0, None),
-    "lower_80": np.clip(pred - z["80"] * sigma.iloc[i], 0, None),
-    "lower_50": np.clip(pred - z["50"] * sigma.iloc[i], 0, None),
+    "lower_95": np.maximum(pred - z["95"] * sigma[i], 0),
+    "lower_90": np.maximum(pred - z["90"] * sigma[i], 0),
+    "lower_80": np.maximum(pred - z["80"] * sigma[i], 0),
+    "lower_50": np.maximum(pred - z["50"] * sigma[i], 0),
     "median": pred,
     "predicted": pred,
-    "upper_50": pred + z["50"] * sigma.iloc[i],
-    "upper_80": pred + z["80"] * sigma.iloc[i],
-    "upper_90": pred + z["90"] * sigma.iloc[i],
-    "upper_95": pred + z["95"] * sigma.iloc[i],
+    "upper_50": pred + z["50"] * sigma[i],
+    "upper_80": pred + z["80"] * sigma[i],
+    "upper_90": pred + z["90"] * sigma[i],
+    "upper_95": pred + z["95"] * sigma[i],
 })
 ```
 
